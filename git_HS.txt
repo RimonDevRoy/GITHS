@@ -1,0 +1,867 @@
+● Version Control System / Versioning System : It is the phenomenon of having a checkpoint in the software so that we can proceed on to update the software and if by chance any irrecoverable error causes to the software, we can go back to the previous checkpoint where the code was running absolutely well.
+
+● Git itself is a software, but Github is a service.
+
+||| 02 - Git init and hidden folder |||
+
+● If we press up arrow key in the terminal then the command of the upper line will again come.
+
+● git config --global property_holder.property "property_value"
+
+Sets the property_value to the property of property_holder.
+
+● git config --list
+
+Shows all the default and manually set properties to git.
+
+● git config property_holder.property
+
+Returns the property_value of the property.
+
+● The current folder is shown at the top right corner of git bash.
+
+● 'ls' command shows what are executables in the current folder and 'dir' shows what are in total in the folder.
+
+● 'mkdr folder1name folder2name ...' makes the given directories in the current folder.
+
+● The folders that we create are not associated with git, but in order to let git track changes, it can access them.
+
+● Git is like Game Saver:
+In games we cannot clear every level in one go and that's why we keep checkpoints which are the starting points in the game when we restart. Git tracks the changes of code and marks the checkpoints
+
+● Learning path:
+Get the basics -> Use GIT daily -> face a problem while using it and solve it
+
+● Repo(Repository): Informally, it can be said a folder that contains several softwares.
+
+● git --version or git -v
+Returns the version of GIT
+
+● We need to particularly mention which folder is a repo and initialize GIT in that folder. Only then the folder will get tracked. If we do not command a folder to be tracked, it will never be tracked.
+
+● Tracking of one repo is completely independent from another.
+
+● git status
+Returns the status of the current folder that whether it is tracked or untracked. It is a good habit to always check status of a folder.
+
+● ls -la
+Shows all the hidden folders inside the current folder.
+
+● git init
+Initializes the current folder as a GIT Repo. It should be done only once per folder. We can add, remove, delete files in the repo but should not initialize an initialized repo again.
+
+● .git
+A hidden folder that keeps the history of all files and sub-folders and sub-sub-folders and so on in the current folder. It is made by the 'git init' command. It is must to never make manual changes in the files inside this folder.
+
+● Hidden folders start with .
+
+● Commits are like checkpoint savings.
+
+● The working flow of GIT:
+
+First we make changes(writing files) into files inside the working directory(GIT repo). Then, we add the commitable files into the "Staging Area" by 'git add file_name file_name ....'. Then, we commit them by 'git commit'.
+
+||| 03 - GIT commits and logs |||
+
+● pwd
+Returns the present working directory.
+
+● git add takes the files into track zone, that is, staging area.
+
+● git rm --cached file_name file_name ...
+Removes the files from staging area
+
+● Staging Area:
+It is sort of a zone that asks for confirmation to whether commit or not. Like the screen in games that ask are you sure you wanna save it?
+
+● After committing a file, it goes to Repo zone, where it is being tracked, and nothing will change until it is committed again. 
+
+● git commit -m "oneliner message"
+It commits the added files in staging area into Repo with the given message.
+
+● touch file_name file_name...
+Creates the files in the current working directory.
+
+● Whenever we make a commit without msg, by default opens up VIM.
+
+● 'esc + : + q' quits from the current context and 'q + !' forcefully quits from current context.
+
+● git add .
+Adds all files of pwd to the staging area.
+
+● git log
+Shows the log of previous commits. Every commit has an unique commit ID. The first 5 letters of it are enough to make it unique. That's why, in GIT GUI the first 5 are displayed. The name of committer user and his email are also shown along with dates.
+
+● git log --oneline
+Is the short one line version for info in git log.
+
+● GIT follows Atomic Commits. That means, each commit is done for only feature update.
+Recommedation for writing message:
+- Write imperatively in present simple tense.
+- As if we were ordering the code base.
+
+||| 04 - GIT internal working and configs |||
+
+● We can use 'git ignore' to make GIT ignore some sensitive files like files that hold API keys, passwords etc.
+
+● git config property_holder.property "property_value"
+Sets the property_value to property only for the current Repo.
+
+● git config --global property_holder.property "property_value"
+Sets the property_value to property for all the Repos.
+
+● We can also make our own property_holder and property.
+
+● We can change default editor for GIT(Vim) by:
+
+git config --global core.editor "editor_name --wait"
+Here, --wait is given so that the editor waits after opening and after taking commands and getting closed then starts to process those.
+
+● Before setting the default editor to VS code we need to install 'code' command in PATH in control panel.
+
+● Whenever we build a project, there will be a file named "environmentvariables" which holds very sensitive things like API keys, node_modules etc.
+
+● We need to write the names of files and folders that are to be ignored in the .gitignore folder.
+
+Syntax:
+file_name
+folder_name/
+
+● We must push .gitignore so that it gets updated about which files are to be hidden updated.
+
+● There are .gitignore generators in internet that generate a .gitignore file that has all the commonly ignored files in projects.
+
+https://mrkandreev.name/snippets/gitignore-generator/
+
+https://www.toptal.com/developers/gitignore/api/${name}
+
+The second site has API feature.
+
+● 'cd' takes to the root folder.
+
+● 'cat file_name'
+Provides contents and details about Repository objects. 
+
+● 'git cat file'
+Provide contents or details of repository objects.
+
+● cat .gitconfig
+Gives the details in the configuration file.
+
+● Every commit has three parts:
+
+Hash -> A unique ID generated for the commit. Its generation depends on previous commit's hash, parent pointer and slightly on info. 
+
+Parent -> The pointer that points to the previous commit. The parent pointer points to 'null' for the first commit. This pointing helps to keep track of previous progress.
+
+Info -> Other informations about the commit like OS, date, time, email etc.
+
+● My speculation is that every commit must be stored somewhere in the memory otherwise how a pointer is pointing towards it.
+
+● We can find many interesting files inside .git
+
+● We are always on some branch in GIT. By default we are in master branch.
+
+● hooks are pieces of code that are hooked with a particular activity and they will run upon the running of particular activity.
+
+● HEAD points towards the branch we are in.
+
+||| 05 - GIT merge and GIT conflicts |||
+
+● git branch
+Returns where the pointer is pointing towards.
+
+● By defualt we are placed in main branch(master) and nodes are created on the branch which are the checkpoints. 
+
+● When we edit a file, the GIT will inform us that a file has been modifies and do we want to stage the change or discard the change?
+
+● When a file is modified, it has to be added and then committed to save as a checkpoint and if any further changes done to the file after adding it but not committing then it has to be added again for the next modification and committed.
+
+● To restore a file to the previous checkpoint, we have to use the command:
+
+git restore file_name file_name ...
+
+● We can make a branch by:
+
+git branch branch_name
+
+But we need to point the HEAD to the branch where we want to stay. Creation of new branch can only be after the first commit in main branch.
+
+● git checkout branch_name
+Makes the HEAD point towards branch_name
+
+● Whatever we are doing by terminal commands can be done manually writing in the files.
+
+● We can remove a file from being tracked by:
+
+git rm --cached file_name file_name ...
+
+After this we have to commit that this file has been removed.But it won't affect the previous made and saved changes.
+
+● Whatever we do in other branches like creating a file etc. won't be available in main branch unless we merge them. The other branches will get access to the changes and files made in the main branch before the creation of this branch. Because it branched from the main branch itself.
+
+● The HEAD generally points to the latest commit in the branch we are currently at. But it can be changed. This implies that the hash in the SHA file of branches is the hash of the latest commit of the branch.
+
+● We can see to which commit the HEAD is pointing in 'git log --oneline'
+
+● We can switch to other branches by:
+
+git checkout branch_name
+git switch branch_name
+
+● We can instantly move into other branch after creating:
+
+git switch -c branch_name
+git checkout -b branch_name
+
+● It is recommended to commit before switching to other branch.
+
+● Two types of branch merging:
+
+- Fast forward merging: We do not do much in the main branch and do almost everything in another branch and then merge it to the main branch. If we do nothing in the main branch after making another branch, then the different branch will be added to the end point of main branch. When we merge also plays a role in branch 
+
+          branch1
+          -----------
+  main  /
+--------
+        \
+          ----------
+          branch2
+
+- Not fast forward merging: In this flow, the main branch also commits and other branches also commit. The starting point point of separate branch is at the latest node of the moment when the branch is being created and ending point of the branch is the latest node(created on commit when merge is done) of the moment when the branch is merged.
+
+            branch1
+         ----------------                     --------------------------....
+ main   /                \                   /
+------------------------------------------------------------------------....
+                   \                             /
+                     ----------------------------
+                            branch2
+
+● In branches, commits are the nodes.
+
+● We have to stay on the branch to which the other branch should converge(ideally master, because we won't want to alter the main timeline.)
+
+● git merge branch_name
+Merges the branch into the main branch.
+
+● We can delete a branch by:
+
+git branch -d branch_name
+
+If the branch is merged with the main branch before deletion then the changes done while in the branch is  stored.
+
+● To prevent git from detecting changes in these files you should also use this command:
+
+git update-index --assume-unchanged [path]
+
+● This is to tell git you want your own independent version of the file or folder. For instance, you don't want to overwrite (or delete) production/staging config files.
+
+git update-index --skip-worktree <path-name>
+
+● This will keep the local file for you, but will delete it for anyone else when they pull.
+
+git rm --cached <file-name> or git rm -r --cached <folder-name>
+
+This is for optimization, like a folder with a large number of files, e.g. SDKs that probably won't ever change. It tells Git to stop checking that huge folder every time for changes, locally, since it won't have any. The assume-unchanged index will be reset and file(s) overwritten if there are upstream changes to the file/folder (when you pull).
+
+git update-index --assume-unchanged <path-name>
+
+This is to tell Git that you want your own independent version of the file or folder. For instance, you don't want to overwrite (or delete) production/staging config files.
+
+git update-index --skip-worktree <path-name>
+
+It's important to know that git update-index will not propagate with Git, so each user will have to run it independently.
+
+Note that to undo either #2 or #3, you can use the [no-] variant of the respective commands:
+
+git update-index --no-assume-unchanged <path-name>
+git update-index --no-skip-worktree <path-name>
+
+● When we want to merge two branches that worked on the same file but differently, even though the branches merge, conflicts arise and the file shows up the below code:
+
+<<<<<<<<<<< HEAD (changes made by current branch)
+
+code by current branch
+
+========================
+
+code by other branch
+
+>>>>>>>>>>> other_branch_name (incoming change)
+
+Keep what you want to keep, remove the markers and save the file and then commit. There is no automatic way to solve this rather we have to talk with the other code and come to a conclusion.
+
+● We will only get the changes of the recent most commit of both the branches while merging.
+
+● The commits done in side branches(these are the ones whose changes are available in the main branch after merging and if further changes are done in the branches, we need to again merge them to get them.) are also shown in the log list of main branch after merging and the branch is also shown in brackets beside the commit message in log screen.
+
+● The 'config' file in the .git folder holds the configurations for the current Repo not global.
+
+● The 'HEAD' is a pointer that points towards the current branch.
+
+● The 'hooks' is the most advanced folder in GIT. These are the exactly same hooks in React and JS. In GIT, they are highly connected to 'commit'. We can also write how the commit message should look in the commitsample file in this folder.
+
+● The 'logs' folder keeps the track of everything that happened in GIT in its own HEAD file. In its 'refs' folder the 'heads' folder is the pointer that points towards the current branch.
+
+||| 06 - GIT Diff and stashing |||
+
+● git diff actually shows the difference between the different versions of the exact same file. In a sense, when we modify a file it changes to another file because the contents changed, but anyhow the core file is same.
+
+● The contents in previous state of the file is indicated by '---' and the contents in the next state of the file is indicated by '+++'. These can be reversed if we reverse the reference frame(intechangin prevCommitID and nextCommitID).
+
+● We can see changes made to all the files before being staged and after being staged by:
+
+git diff --staged
+
+● We can see the changes made to a file between two commits by:
+
+git diff prevCommitID nextCommitID
+
+git diff prevCommitID..nextCommitID
+
+● Conflicting changes do not allow to switch branch without committing. That means if I have modified a file in a branch without even staging it let alone committing, GIT won't allow me to change the working branch.
+
+● Only the tracked files and folders in individual branches are not available in other branches.
+
+● We can stash the changes done to a file in a branch without saving them and move around and again alter them later. This is like storing something in the shelf for some time and bring them after roaming is over.
+
+To stash changes:
+
+git stash
+
+To bring back stashed changes:
+
+git stash pop
+
+● Stashed changes can also be popped in other branches, and conflicts may even arise in this case and solution is to be done in a similar way.
+
+● WIP: Work In Progress
+
+● We can see the list of all stashed changes by:
+
+git stash list
+
+The stashes are stored like stash@{0} stash@{1} stash@{2} ...
+
+● We can apply a specific stash from the list by:
+
+git stash apply stash@{index}
+
+● git checkout HASH
+It points to the commit of the given hash ID.
+
+● git switch main/branch_name
+It points to the latest point of the branch.
+
+● git checkout HEAD~n
+It points to n commits prior to the current condition. 
+
+hash-latest // from Here
+hash-1
+hash-2
+hash-3 // will come here, if n = 2
+
+● git restore file_name
+It restores the file to its most recent last commit.
+
+● git reflog
+It points to the immediate position we were before coming to the present point.
+
+||| 07 - GIT Rebase |||
+
+● We should never Rebase staying on the main branch.
+
+● Often times we will need the changes made in master branch be available in side branches. In this case we will merge main to the side branch, and this will make several commits just for merging the changes made in main. This is what seems like multiple web like merges between main and side branch.
+
+● Below is the demostration:
+  merge     merge     merge
+----------------------------------
+    \          \         \
+     ----------------------------
+
+● Rebase command is an alternative to Merge.
+
+● Rebase command is a kind of clean up tool.(clean up commits)
+
+● We can Rebase by:
+
+git rebase master
+
+It means we are rebasing the current branch on the main branch.
+
+● If conflicts arise while rebasing , we have to solve the conflicts and then add or remove the Conflicting files and then continue the Rebase by:
+
+git rebase --continue
+
+or abort by:
+
+git rebase --abort
+
+● NEVER rebase commits that were shared with other coders.
+
+● NEVER rebase if we are pushing with the code to GitHub.
+
+● Branches due to merge:
+
+-----------------------
+   \          \     
+    ------------------
+
+Branches rebased place the starting point of side branches on the end point of the main branch.
+
+            Rebase point
+                 |
+------------------------------------
+|    main       | |  side branch |
+
+||| 08 - Insight of pushing code to Github |||
+
+● Github works based on SSH keys.
+
+● We have to generate a SSH key and save in the settings of Github so that Github can recognize me. 
+
+● For generating SSH key and any other query, read Github documentation.
+
+ssh-keygen -t ed25519 -C "email adress of Github account"
+
+This generates a new SSH key using the given email as label. Then we have to enter the file where to save the key. Generally:
+
+c/Users/hkdr3/.ssh/id_ALGORITHM and then press enter
+
+● After this, we will be prompted to set a passphrase. We have to provide it whenever we are doing a GIT request. We won't be able to see our types passphrase.
+
+● Then we have to add the SSH key to SSH agent. We should check for existing SSH keys if there are. These are to be done in windows powershell. Command:
+
+
+
+● SSH (Secure Shell Protocol)
+
+● ls -al ~/.ssh
+Gives the list of available files inside .ssh folder
+
+● SSH keys are stored in the SSH agent of local machine of the user and it is also stored in his Github account. This is how the Github verifies that if the same person is trying access the account in Github. This means if an user is using mulitple devices, he has to upload the same SSh key to the SSH agent of every devices or generate a new key for every device and add all of them to his Github account.
+
+● You can add an SSH key and use it for authentication, or commit signing, or both. If you want to use the same SSH key for both authentication and signing, you need to upload it twice. Do some research about commit signing.
+
+● After adding a new SSH authentication key to your account on GitHub.com, you can reconfigure any local repositories to use SSH.
+
+● cat ~/.ssh/ssh_key.pub | clip
+Copies the given public ssh key to the clipboard.
+
+● You can sign commits and tags locally, to give other people confidence about the origin of a change you have made. If a commit or tag has a GPG, SSH, or S/MIME signature that is cryptographically verifiable, GitHub marks the commit or tag "Verified" or "Partially verified."
+For most individual users, GPG or SSH will be the best choice for signing commits. S/MIME signatures are usually required in the context of a larger organization. SSH signatures are the simplest to generate. You can even upload your existing authentication key to GitHub to also use as a signing key. Generating a GPG signing key is more involved than generating an SSH key, but GPG has features that SSH does not. A GPG key can expire or be revoked when no longer used. GitHub shows commits that were signed with such a key as "Verified" unless the key was marked as compromised. SSH keys don't have this capability.
+
+Commits and tags have the following verification statuses, depending on whether you have enabled vigilant mode. By default vigilant mode is not enabled.
+Signing commits differs from signing off on a commit.
+
+Status	Description
+Verified	The commit is signed and the signature was successfully verified.
+Unverified	The commit is signed but the signature could not be verified.
+No verification status	The commit is not signed.
+
+Signature verification for rebase and merge
+When using the Rebase and Merge option on a pull request, it's important to note that the commits in the head branch are added to the base branch without commit signature verification. When you use this option, GitHub creates a modified commit, using the data and content of the original commit. This means that GitHub didn't truly create this commit, and can't therefore sign it as a generic system user. GitHub doesn't have access to the committer's private signing keys, so it can't sign the commit on the user's behalf.
+
+A workaround for this is to rebase and merge locally, and then push the changes to the pull request's base branch.
+
+Statuses with vigilant mode enabled
+Status	Description
+Verified	The commit is signed, the signature was successfully verified, and the committer is the only author who has enabled vigilant mode.
+Partially verified	The commit is signed, and the signature was successfully verified, but the commit has an author who: a) is not the committer and b) has enabled vigilant mode. In this case, the commit signature doesn't guarantee the consent of the author, so the commit is only partially verified.
+Unverified	Any of the following is true:
+- The commit is signed but the signature could not be verified.
+- The commit is not signed and the committer has enabled vigilant mode.
+- The commit is not signed and an author has enabled vigilant mode.
+
+Repository administrators can enforce required commit signing on a branch to block all commits that are not signed and verified.
+
+You can check the verification status of your signed commits or tags on GitHub and view why your commit signatures might be unverified.
+
+GitHub will automatically use GPG to sign commits you make using the web interface. Commits signed by GitHub will have a verified status. You can verify the signature locally using the public key available at https://github.com/web-flow.gpg.
+
+You can optionally choose to have GitHub GPG sign commits you make in GitHub Codespaces.
+
+SSH commit signature verification
+You can use SSH to sign commits with an SSH key that you generate yourself. For more information, see the Git reference documentation for user.Signingkey. If you already use an SSH key to authenticate with GitHub, you can also upload that same key again for use as a signing key. There's no limit on the number of signing keys you can add to your account.
+
+GitHub uses ssh_data, an open source Ruby library, to confirm that your locally signed commits and tags are cryptographically verifiable against a public key you have added to your account on GitHub.com.
+
+To sign commits using SSH and have those commits verified on GitHub, follow these steps:
+
+Check for existing SSH keys
+Generate a new SSH key
+Add a SSH signing key to your GitHub account
+Tell Git about your signing key
+Sign commits
+Sign tags
+
+● When using GIT, it is better stay inside the Repo as main folder instead of making a workspace.
+
+● Evey Repo in Github should have unique name for each account.
+
+● We can rename our current branch by:
+
+git branch -M new_name
+
+● Github Discussion:
+GIT is a software but Github is a service.
+
+Github = Collaboration + Backup + Open source
+
+● When we create a Repo in Github the following commands are to be executed in GIT(if not done already)
+
+echo "# Github_Repo_name" >> file.extension // creates the given file
+git init
+git add file.extension
+git commit -m "first commit"
+git branch -M main
+git remote add GithubMainBranchName https://github.com/user_name/Github_Repo_name.git // Adds remote Repo
+git push -u GithubRemoteRepoGivenName GITPushableBranchName
+
+● We can verify whether we have any remote Repo(Github, local Repo = GIT) by:
+
+git remote -v
+
+● We can add remote Repo by:
+
+git remote add GithubRemoteRepoGivenName(origin) RemoteRepoURL
+
+● We can rename remote Repo by:
+
+git remote rename oldname newname
+
+● We can remove the remote Repo to configure a new one by:
+
+git remote remove GithubRemoteRepoGivenName
+
+● We can push our GIT branch into Github by:
+
+git push GithubRemoteRepoGivenName GITPushableBranchName
+
+-u sets an upstream between GithubRemoteRepoGivenName GITPushableBranchName so that we can push our code with only 'git push' from the next time onwards.
+
+-u === --up-stream
+
+● Before pushing, we have to commit the changes in GIT.
+
+● We can clone a Remote Repo and bring it in our local machine by:
+
+git clone RemoteRepoURL
+
+● When we clone a remote Repo, we just get the main branch of it.
+
+● 'git fetch' just brings code from remote Repo to Local Repo and 'git pull' brings code from remote Repo and directly puts it into working area of user.
+
+git pull = git fetch + git merge
+git pull origin main (pulled changes from origin will be merged to main branch)
+
+
+Working Area  |  Staging Area  |  Local Repo  |  Remote Repo  |
+              |                |              |               |                        
+              |                |              |               |                        
+              |                |              |               |                        
+              |                |              |               |                        
+              |                |              |               |                        
+              |                |              |               |                        
+              |                |              |               |                        
+            <--------------------------------------------------(git pull)  
+                                             <-----------------(git fetch)  
+
+● Collaboration can be done in Github, that is, multiple people can work on a single project.
+
+||| 09 - How to make Pull request and Open Source contribution |||
+
+● Steps to contribute on Open Source:
+
+1. Talk to the owners of the project on which topic you want to work and dont start working before getting a reply.
+
+2. Open an issue
+
+3. Get the task of fixing issue assigned to yourself
+
+4. Work and add value by focusing on programming rather than nuisance.
+
+5. Then make a PR and iterate over it.
+
+6. Have Patience
+
+7. If accepted, Congrats! You have contributed in Open Source.
+
+● Fork brings the desired repository into my Github account as well and then we have to clone the repository files in GIT.
+
+● It is recommended to make changes in a seperate branch other than main branch of the cloned project even though the main branch clone of the repositoru has no connection with the main repository. Because after we are done with making changes in the files, when we need to submit the changes by pull requests etc. it will go in the main project and conflict and collide with the main project.
+
+● When we are done making the changes, we need to push the side branch to the forked main repository. Then we have to make PR. The title and description of the PR should be written with extreme cautious and care. PR means I am sending the changes to the main owner of the repository and request for his approval.
+
+● Your topic branch (also known as “feature branch”) is the branch where you’re making your changes in your forked repository (e.g. my-topic-branch).
+The base branch is the branch in the upstream (central) repository that you want to merge your changes into (e.g. main).
+The pull request compares the changes proposed by the topic branch (my-topic-branch) with the base branch (main), so my-topic-branch is known as the “compare branch”.
+
+Navigate to the original repository where you created your fork.
+
+Above the list of files, in the yellow banner, click Compare & pull request to create a pull request for the associated branch.
+
+On the page to create a new pull request, click compare across forks.
+
+In the "base branch" dropdown menu, select the branch of the upstream repository you'd like to merge changes into.
+
+In the "head fork" dropdown menu, select your fork, then use the "compare branch" drop-down menu to select the branch you made your changes in.
+
+Type a title and description for your pull request.
+
+On user-owned forks, if you want to allow anyone with push access to the upstream repository to make changes to your pull request, select Allow edits from maintainers.
+
+Warning: If your fork contains GitHub Actions workflows, the option is Allow edits and access to secrets by maintainers. Allowing edits on a fork's branch that contains GitHub Actions workflows also allows a maintainer to edit the forked repository's workflows, which can potentially reveal values of secrets and grant access to other branches.
+
+To create a pull request that is ready for review, click Create Pull Request. To create a draft pull request, use the drop-down and select Create Draft Pull Request, then click Draft Pull Request. For more information about draft pull requests, see "About pull requests."
+
+● Steps for making a PR:
+
+1. Fork the repository you wanna make changes into.
+
+2. Clone the repository in GIT.
+
+3. Make a side branch and make changes there.
+
+4. Commit the changes and push them to the forked repository.
+
+5. Give a PR request.
+
+● 'git fetch' download the updated remote Repo but stays wherever it was(latest commit before fetching) before fetching and 'git merge' has to be executed to get the changes inside the new updates in remote Repo. 'git pull' fetches and merges at the same time. If there were three commits at the initial time and we create a new commit and another developer pushed new commits in the remote Repo and we fetch the remote Repo updation then the new commits by the other developer would come out in a side branch in our GIT. We have to merge them according to our use case. We can use --ff-only, --ff, --rebase as option with 'git pull <option>' or at first fetch and then merge according to our wish. If rebasing is done, then the new developer's commits would be prior to our new commits on the branch we are working on. --rebase rebases, --ff merges in fast forward, --ff-only merges in fast forward only if we don't have any new commit of our own which results new developer's come in diverged new branch when fetched, otherwise won't merge.
+
+Our commits === local commits
+New developer's commits === remote commits
+
+● In Github, the latest commit about the file is shown beside the file.
+
+● ~ resembles root directory.
+
+● We can egitxecute terminal commands for softwares that require them from any terminal.
+
+● We clear the terminal with the 'clear' command.
+
+● "your code is upto date" means that the code in GIT is same as Github.
+
+● Any new file created initially stays as untracked.
+
+● Any changes made in tracked files are to be added first and then committed.
+
+● Workflow if Started from Github:
+
+1. Github Repo create.
+
+2. Clone the Repo to GIT.
+
+3. Make changes.
+
+4. add the changes.
+
+5. Commit the changes.
+
+6. Push the changes to Github.
+
+● Worfflow if started from GIT:
+
+1. Create a Github Repo.
+
+2. Initialize GIT in the working directory.
+
+3. Make changes.
+
+4. Add and commit the changes.
+
+5. Add the Github Repo as remote Repo to the GIT Repo present working directory.
+
+6. Push the changes to Github Remote Repo.
+
+● PR in Github === Merge in GIT
+
+● If we are in a branch and want to compare it with other branch file condition, we can do it by:
+
+git diff branch_with_which_compare_current_branch
+
+● We can reset one step back if we accidentally did any GIT operation on files by:
+
+git reset file_name file_name .... (for the named files)
+git reset (for all files)
+
+● We can reset n commits back by:
+
+git reset HEAD~n
+
+● We can reset back to a particular commit by:
+
+git reset commit_hash
+
+If we want the changes to reset also then:
+
+git reset --hard commit_hash
+
+● Even if we reset the steps in GIT, the changes in files will stay as they were before resetting just the GIT step resets.
+
+● In a sense we can say that the latest commit in a branch is HEAD(pointer storing the latest commit).
+
+● Fork: It is a rough copy with the same settings and visibility options amde for the forker.
+
+● To restore the cahnges in a file:
+
+git restore --source=commit_hash file_name
+
+which (by default) puts it in working tree. If you want to put the change directly in index so it can be committed straight away:
+
+git restore --source=abcdef --worktree --staged file_name
+
+or with short option names:
+
+git restore -scommit_hash -W -S file_name
+
+● git log -n
+Shows the n most recent commits
+
+● git checkout commit_hash -- file.extension
+This takes the file back to the state of how it was while commit_hash.
+
+● git revert HEAD~n
+Reverts back n commits.
+
+● git revert --hard HEAD~n
+Reverts and deletes n commits.
+
+● git log file.extension / git log --oneline file.extension
+Shows the commits made for that file only.
+
+● git checkout [commit ID] -- path/to/file
+
+
+● 
+
+● 
+
+● 
+
+● 
+
+● 
+
+/*
+
+1c,1c-bitrix,a-frame,actionscript,ada
+adobe,advancedinstaller,adventuregamestudio,agda,al
+alteraquartusii,altium,amplify,android,androidstudio
+angular,anjuta,ansible,ansibletower,apachecordova
+apachehadoop,appbuilder,appceleratortitanium,appcode,appcode+all
+appcode+iml,appengine,aptanastudio,arcanist,archive
+archives,archlinuxpackages,asdf,aspnetcore,assembler
+astro,ate,atmelstudio,ats,audio
+autohotkey,automationstudio,autotools,autotools+strict,awr
+azurefunctions,azurite,backup,ballerina,basercms
+basic,batch,bazaar,bazel,bitrise
+bitrix,bittorrent,blackbox,blender,bloop
+bluej,bookdown,bower,bricxcc,buck
+c,c++,cake,cakephp,cakephp2
+cakephp3,calabash,carthage,certificates,ceylon
+cfwheels,chefcookbook,chocolatey,circuitpython,clean
+clion,clion+all,clion+iml,clojure,cloud9
+cmake,cocoapods,cocos2dx,cocoscreator,codeblocks
+codecomposerstudio,codeigniter,codeio,codekit,codesniffer
+coffeescript,commonlisp,compodoc,composer,compressed
+compressedarchive,compression,conan,concrete5,coq
+cordova,craftcms,crashlytics,crbasic,crossbar
+crystal,cs-cart,csharp,cuda,cvs
+cypressio,d,dart,darteditor,data
+database,datarecovery,dbeaver,dbt,defold
+delphi,deno,dframe,diff,direnv
+diskimage,django,dm,docfx,docpress
+docusaurus,docz,dotenv,dotfilessh,dotnetcore
+dotsettings,doxygen,dreamweaver,dropbox,drupal
+drupal7,drupal8,e2studio,eagle,easybook
+eclipse,eiffelstudio,elasticbeanstalk,elisp,elixir
+elm,emacs,ember,ensime,episerver
+erlang,espresso,executable,exercism,expressionengine
+extjs,fancy,fastlane,finale,firebase
+fish,flashbuilder,flask,flatpak,flex
+flexbuilder,floobits,flutter,font,fontforge
+forcedotcom,forgegradle,fortran,freecad,freepascal
+fsharp,fuelphp,fusetools,games,gatsby
+gcov,genero4gl,geth,ggts,gis
+git,gitbook,go,godot,goland
+goland+all,goland+iml,goodsync,gpg,gradle
+grails,greenfoot,groovy,grunt,gwt
+haskell,helm,hexo,hol,homeassistant
+homebrew,hsp,hugo,hyperledgercomposer,iar
+iar_ewarm,iarembeddedworkbench,idapro,idris,igorpro
+images,infer,inforcms,inforcrm,intellij
+intellij+all,intellij+iml,ionic3,jabref,janet
+java,jboss,jboss-4-2-3-ga,jboss-6-x,jboss4
+jboss6,jdeveloper,jekyll,jenv,jetbrains
+jetbrains+all,jetbrains+iml,jgiven,jigsaw,jmeter
+joe,joomla,jsonnet,jspm,julia
+jupyternotebooks,justcode,kaldi,kate,kdevelop4
+kdiff3,keil,kentico,keystonejs,kicad
+kirby2,kirby3,kobalt,kohana,komodoedit
+konyvisualizer,kotlin,labview,labviewnxg,lamp
+laravel,latex,lazarus,leiningen,lemonstand
+less,liberosoc,librarian-chef,libreoffice,lighthouseci
+lilypond,linux,lithium,localstack,logtalk
+lsspice,ltspice,lua,lyx,macos
+magento,magento1,magento2,magic-xpa,matlab
+maven,mavensmate,mdbook,mean,mercurial
+mercury,meson,metals,metalsmith,metaprogrammingsystem
+meteor,meteorjs,microsoftoffice,mikroc,mill
+moban,modelsim,modx,momentics,monodevelop
+mplabx,mule,nanoc,nativescript,ncrunch
+nesc,netbeans,nette,nextjs,nikola
+nim,ninja,node,nodechakratimetraveldebug,nohup
+notepadpp,nova,now,nuxtjs,nwjs
+objective-c,obsidian,ocaml,octave,octobercms
+opa,opencart,opencv,openfoam,openframeworks
+openframeworks+visualstudio,oracleforms,orcad,osx,otto
+oxideshop,oxygenxmleditor,packer,pants,particle
+patch,pawn,perl,perl6,ph7cms
+phalcon,phoenix,php-cs-fixer,phpcodesniffer,phpstorm
+phpstorm+all,phpstorm+iml,phpunit,pico8,pimcore
+pimcore4,pimcore5,pinegrow,platformio,playframework
+plone,polymer,powershell,premake-gmake,prepros
+prestashop,processing,progressabl,psoccreator,pulumi
+pulumi+stacks,puppet,puppet-librarian,purebasic,purescript
+putty,pvs,pycharm,pycharm+all,pycharm+iml
+pydev,python,pythonvanilla,qml,qooxdoo
+qt,qtcreator,r,racket,rails
+react,reactnative,reasonml,red,redcar
+redis,remix,remix+arc,remix+cloudflarepages,remix+cloudflareworkers
+remix+netlify,remix+vercel,renpy,replit,retool
+rhodesrhomobile,rider,robotframework,root,ros
+ros2,ruby,rubymine,rubymine+all,rubymine+iml
+rust,rust-analyzer,salesforce,salesforcedx,sam
+sam+config,sas,sass,sbt,scala
+scheme,scons,scrivener,sdcc,seamgen
+senchatouch,serverless,shopware,silverstripe,sketchup
+slickedit,smalltalk,snap,snapcraft,snyk
+solidity,soliditytruffle,sonar,sonarqube,sourcepawn
+spark,specflow,splunk,spreadsheet,ssh
+standardml,stata,stdlib,stella,stellar
+storybookjs,strapi,stylus,sublimetext,sugarcrm
+svelte,svn,swift,swiftpackagemanager,swiftpm
+symfony,symphonycms,synology,synopsysvcs,tags
+tarmainstallmate,terraform,terragrunt,test,testcomplete
+testinfra,tex,text,textmate,textpattern
+theos-tweak,thinkphp,tla+,toit,tortoisegit
+tower,turbo,turbogears2,twincat3,tye
+typings,typo3,typo3-composer,umbraco,unity
+unrealengine,vaadin,vagrant,valgrind,vapor
+vcpkg,venv,vercel,vertx,video
+vim,virtualenv,virtuoso,visualbasic,visualstudio
+visualstudiocode,vivado,vlab,vrealizeorchestrator,vs
+vue,vuejs,vvvv,waf,wakanda
+web,webmethods,webstorm,webstorm+all,webstorm+iml
+werckercli,windows,wintersmith,wordpress,wyam
+xamarinstudio,xcode,xcodeinjection,xilinx,xilinxise
+xilinxvivado,xill,xmake,xojo,xtext
+y86,yalc,yarn,yeoman,yii
+yii2,zendframework,zephir,zig,zsh
+zukencr8000
+
+*/
+
+Above is the list of all API keys for the second site to generate .gitignore files.
