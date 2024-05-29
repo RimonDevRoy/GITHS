@@ -4,3 +4,5 @@ I found out that when we want to push out GIT Repo in Github, we must have atlea
 
 Thus, it is better to pull the remote Repo before pushing GIT Repo.
 git pull usually doesn't work properly if the GIT Repo is locally made and pushed to remote Repo because the commit histories do not match.
+
+If we make GIT Repo locally instead of cloning from Github, we have to pull remote Repo in rebase because it makes the history identical to having cloned from remote Repo and making changes in GIT local Repo.
