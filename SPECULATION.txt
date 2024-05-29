@@ -3,3 +3,4 @@ I found out that if we have less files(don't have those that are in remote Repo)
 I found out that when we want to push out GIT Repo in Github, we must have atleast the same files that the Github remote Repo has in our GIT Repo. We can have (remote Repo files + extra files) but not less than remote Repo files.
 
 Thus, it is better to pull the remote Repo before pushing GIT Repo.
+git pull usually doesn't work properly if the GIT Repo is locally made and pushed to remote Repo because the commit histories do not match.
