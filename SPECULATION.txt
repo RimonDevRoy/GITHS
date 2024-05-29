@@ -1,1 +1,3 @@
 I found out that if we have less files(don't have those that are in remote Repo) in GIT Repo compared to Github remote Repo we cannot push our GIT Repo to Github remote Repo. We can have more files but not less.
+
+I found out that when we want to push out GIT Repo in Github, we must have atleast the same files that the Github remote Repo has in our GIT Repo. We can have (remote Repo files + extra files) but not less than remote Repo files.
