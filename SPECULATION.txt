@@ -1,0 +1,1 @@
+I found out that if we have less files(don't have those that are in remote Repo) in GIT Repo compared to Github remote Repo we cannot push our GIT Repo to Github remote Repo. We can have more files but not less.
